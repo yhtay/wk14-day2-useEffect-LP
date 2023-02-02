@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-function Message({ size }) {
+function Message({ size, featherCount }) {
   const [sizeClass, setSizeClass] = useState('')
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     console.log('Message', size);
@@ -24,9 +25,14 @@ function Message({ size }) {
     setSizeClass(cname);
   }, [size])
 
+
+  useEffect(()=> {
+    setMessage(`This turkey has ${featherCount} feathers! So cool!`)
+  },[featherCount])
+
   return (
     <div className={`message ${sizeClass}`}>
-      (Oh my! Your bird is naked!)
+      {message}
     </div>
   );
 };
